@@ -11,7 +11,7 @@ if getgenv().UseScript then
         ['Void'] = "Meta",
         ['Lerp'] = 0.1,
         ['CFrame'] = {0, 1, 0},
-        ['Prediction'] = 1,
+        ['Prediction'] = 1.22,
         ['Multiplier'] = 3,
         ['StompHeight'] = 4,
         ['RandomStompOffset'] = 1.7,
@@ -19,8 +19,8 @@ if getgenv().UseScript then
         ['ForceAmmo'] = 4,
         ['CrewID'] = 32570691,
         ['AntiStomp'] = true,
-        ['LowGraphic'] = false,
-        ['HideScreen'] = true,
+        ['LowGraphic'] = true,
+        ['HideScreen'] = false,
         ['CustomPrefix'] = "!",
         ['Fpscap'] = 150
     }

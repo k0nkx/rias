@@ -11,7 +11,7 @@ if getgenv().UseScript then
         ['Void'] = "Meta",
         ['Lerp'] = 0.1,
         ['CFrame'] = {0, 1, 0},
-        ['Prediction'] = 1.38,
+        ['Prediction'] = 1.44,
         ['Multiplier'] = 3,
         ['StompHeight'] = 4,
         ['RandomStompOffset'] = 1.7,

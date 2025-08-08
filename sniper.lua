@@ -7,14 +7,14 @@ To get started in "getgenv().Owner" put the username you want to control the alt
 --]]
 
 -- **NEW: Enable/Disable Script Execution**
-getgenv().Enabled = false -- Set to false to block the script from running
+getgenv().Enabled = true -- Set to false to block the script from running
 
 if not getgenv().Enabled then
     warn("Script execution is disabled. Set 'Enabled = true' to run.")
     return -- Stops the script if disabled
 end
 
-getgenv().Owner = "Rias_High"
+getgenv().Owner = "Rikkahunt"
 
 getgenv().Configuration = {
     ['Guns'] = {"Rifle", "Flintlock"}, --Default gun, recommended

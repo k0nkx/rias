@@ -7,7 +7,7 @@ To get started in "getgenv().Owner" put the username you want to control the alt
 --]]
 
 -- **NEW: Enable/Disable Script Execution**
-getgenv().Enabled = true -- Set to false to block the script from running
+getgenv().Enabled = false -- Set to false to block the script from running
 
 if not getgenv().Enabled then
     warn("Script execution is disabled. Set 'Enabled = true' to run.")

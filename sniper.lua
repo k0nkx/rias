@@ -1,39 +1,75 @@
-getgenv()._ = 
-"Join discord.gg/msgabv2t9Q | discord.gg/stando to get latest update ok bai | If you pay for this script you get scammed, this script is completely free ok"
+-- compact re-exec safe loader (updated to your new script version & settings)
+getgenv()._ = getgenv()._ or "Join discord.gg/msgabv2t9Q | discord.gg/stando to get latest update ok bai | If you pay for this script you get scammed, this script is completely free ok"
 
---[[
-To get started in "getgenv().Owner" put the username you want to control the alt.
-!! \\ MAKE SURE THE LocalPlayer AND LocalPlayer ACCOUNT ARE IN SAME SERVER // !!
---]]
-
--- **NEW: Enable/Disable Script Execution**
-getgenv().Enabled = false -- Set to false to block the script from running
-
+-- toggle (set true to run)
+getgenv().Enabled = getgenv().Enabled or false
 if not getgenv().Enabled then
-    warn("Script execution is disabled. Set 'Enabled = true' to run.")
-    return -- Stops the script if disabled
+    warn("Script execution is disabled. Set 'getgenv().Enabled = true' to run.")
+    return
 end
 
-getgenv().Owner = "Rikkahunt"
+-- cleanup previous run (remote script can set getgenv().SniperBotCleanup = function() ... end)
+if type(getgenv().SniperBotCleanup) == "function" then
+    pcall(getgenv().SniperBotCleanup)
+end
 
-getgenv().Configuration = {
-    ['Guns'] = {"Rifle", "Flintlock"}, --Default gun, recommended
-    ['Strafe'] = "Random", --Strafe method, Normal - orbit; Random - random;
-    ['Void'] = "Meta", --Void methods, Unhittable, UpDown, Meta, Lerp, Custom
-    ['Lerp'] = 0.1, --Change the lerp speed, required Void method 'Lerp'
-    ['CFrame'] = {0, 1, 0}, --Custom void cframe, required Void method 'Custom'; return the cframe value to math.random [exception Y];
-    ['Prediction'] = 1.44, --Prediction, self explanatory
-    ['Multiplier'] = 3, --Multiplier, multiplies the prediction value; don't change if you don't know what this does
-    ['StompHeight'] = 3, --Stomp Y offset, self explanatory; affects stomp Z X offset
-    ['RandomStompOffset'] = 1.7, --Stomp Z X offset, 0 = nil or disable; recommended for alts; '5' value is max for dh
-    ['SpareAmmo'] = 8, --How much ammo til start buying
-    ['ForceAmmo'] = 4, --How much ammo to force buying
-    ['CrewID'] = 32570691, --Crew id, preferable to be in both same crew alt/main
-    ['AntiStomp'] = true, --Self explanatory
-    ['LowGraphic'] = true, --Self explanatory
-    ['HideScreen'] = false, --Boost fps and lowered cpu consumption, recommended
-    ['CustomPrefix'] = "!", --Bot prefix
-    ['Fpscap'] = 150 --Capped fps
+-- prevent double-run
+if getgenv().SniperBotLoaded then
+    warn("SniperBot already loaded.")
+    return
+end
+getgenv().SniperBotLoaded = true
+
+-- owner & whitelist
+getgenv().Owner = "Rias_high"
+getgenv().Whitelist = getgenv().Whitelist or {
+    1,
+    2,
+    3,
 }
 
-loadstring(game:HttpGet("https://xk5ng.github.io/Sniper-Bot-Rewrite"))()
+-- configuration (kept exactly as provided)
+getgenv().Configuration = getgenv().Configuration or {
+    ['Guns'] = {"Aug", "Rifle"},
+    ['Strafe'] = "Random",
+    ['Void'] = "Meta",
+    ['Lerp'] = 0.001,
+    ['CFrame'] = {0,1,0},
+    ['Prediction'] = 4,
+    ['Multiplier'] = 5,
+    ['StompHeight'] = 4.4,
+    ['RandomStompOffset'] = 1,
+    ['TimeBeforeVoid'] = 1.4,
+    ['TimesAmmo'] = 5,
+    ['SpareAmmo'] = 3,
+    ['ForceAmmo'] = 1,
+    ['InstantRespawn'] = false,
+    ['Cooldown'] = 120,
+    ['DoubleBarrelTime'] = 0.11,
+    ['CustomAnimationPlay'] = false,
+    ['CustomAnimation'] = nil,
+    ['CustomAnimationSpeed'] = 1,
+    ['AuraRange'] = 250,
+    ['CrewID'] = 32570691,
+    ['VoidView'] = true,
+    ['AntiStomp'] = true,
+    ['HideScreen'] = false,
+    ['CustomPrefix'] = "!",
+    ['Fpscap'] = 35
+}
+
+-- safe remote load
+local url = "https://xk5ng.github.io/Sniper-Bot-Rewrite"
+local ok, err = pcall(function()
+    local src = game:HttpGet(url)
+    local fn = loadstring(src)
+    if type(fn) ~= "function" then error("loadstring did not return a function") end
+    fn()
+end)
+
+if not ok then
+    warn("Failed to load remote script:", err)
+    getgenv().SniperBotLoaded = false -- allow retry after fix
+end
+
+-- note: remote script may set getgenv().SniperBotCleanup to a function to enable proper re-exec cleanup

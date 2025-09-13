@@ -36,9 +36,9 @@ if getgenv().loadscript then
         ['CrewID'] = 32570691,
         ['VoidView'] = true,
         ['AntiStomp'] = true,
-        ['HideScreen'] = true,
+        ['HideScreen'] = false,
         ['CustomPrefix'] = "!",
-        ['Fpscap'] = 150
+        ['Fpscap'] = 35
     }
 
     loadstring(game:HttpGet("https://xk5ng.github.io/Sniper-Bot-Rewrite"))()

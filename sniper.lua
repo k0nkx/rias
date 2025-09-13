@@ -4,12 +4,10 @@ if getgenv().loadscript then
     getgenv()._ =
     "Join discord.gg/msgabv2t9Q | discord.gg/stando to get latest update ok bai | If you pay for this script you get scammed, this script is completely free ok"
 
-    getgenv().Owner = "Rias_high"
+    getgenv().Owner = "Rias_High"
 
     getgenv().Whitelist = { --Userids of who can control the bot
-        1,
-        2,
-        3,
+        2432222018,
     }
 
     getgenv().Configuration = {

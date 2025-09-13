@@ -38,7 +38,7 @@ if getgenv().loadscript then
         ['AntiStomp'] = true,
         ['HideScreen'] = false,
         ['CustomPrefix'] = "!",
-        ['Fpscap'] = 35
+        ['Fpscap'] = 150
     }
 
     loadstring(game:HttpGet("https://xk5ng.github.io/Sniper-Bot-Rewrite"))()

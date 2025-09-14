@@ -1,4 +1,4 @@
-getgenv().loadscript = false -- set to false to prevent execution
+getgenv().loadscript = true -- set to false to prevent execution
 
 if getgenv().loadscript then
     getgenv()._ =
